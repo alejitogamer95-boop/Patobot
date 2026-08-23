@@ -1,1 +1,30 @@
+name: Compilar EXE para Windows
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        
+    - name: Instalar librerias
+      run: |
+        python -m pip install --upgrade pip
+        pip install TikTokLive edge-tts pygame pyinstaller
+        
+    - name: Compilar ejecutable
+      run: |
+        pyinstaller --noconsole --onefile app.py
+        
+    - name: Subir Ejecutable
+      uses: actions/upload-artifact@v4
+      with:
+        name: TikTok-TTS-Panel
+        path: dist/app.exe
 

@@ -1,9 +1,4 @@
-name: Compilar EXE para Windows
-
-on:
-  push:
-    branches: [ main, master ]
-  workflow_dispatch:
+on: [push]
 
 jobs:
   build:
@@ -16,10 +11,10 @@ jobs:
       with:
         python-version: '3.10'
         
-    - name: Instalar librerías
+    - name: Instalar librerias
       run: |
         python -m pip install --upgrade pip
-        pip install TikTokLive edge-tts pygame psutil pyinstaller flask
+        pip install TikTokLive edge-tts pygame psutil flask pyinstaller
         
     - name: Compilar ejecutable
       run: |
@@ -30,4 +25,3 @@ jobs:
       with:
         name: TikTok-TTS-Panel
         path: dist/patobot.exe
-        

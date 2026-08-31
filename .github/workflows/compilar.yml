@@ -16,7 +16,7 @@ jobs:
     - name: Instalar librerias
       run: |
         python -m pip install --upgrade pip
-        pip install TikTokLive edge-tts pygame psutil yt_dlp Flask pyinstaller
+        pip install TikTokLive edge-tts pygame psutil pyinstaller
         
     - name: Compilar ejecutable
       run: |

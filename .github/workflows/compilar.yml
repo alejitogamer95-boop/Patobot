@@ -32,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: PatoBot_v1.4.7
-          path: dist/PatoBot_v1.4.7.exe
+          path: dist/PatoBot.exe

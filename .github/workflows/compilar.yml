@@ -26,10 +26,10 @@ jobs:
 
       - name: Compilar ejecutable
         run: |
-          pyinstaller --noconsole --onefile --name PatoBot PatoBot_v1.4.7.py
+          pyinstaller --noconsole --onefile --name PatoBot PatoBot_v1.5.py
 
       - name: Subir ejecutable
         uses: actions/upload-artifact@v4
         with:
-          name: PatoBot_v1.4.7
+          name: PatoBot_v1.5
           path: dist/PatoBot.exe

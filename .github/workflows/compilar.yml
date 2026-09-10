@@ -15,21 +15,42 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
+          cache: 'pip'
 
       - name: Actualizar pip
         run: |
-          python -m pip install --upgrade pip
+          python -m pip install --upgrade pip setuptools wheel
 
-      - name: Instalar librerías
+      - name: Actualizar e instalar librerías
         run: |
-          pip install TikTokLive edge-tts pygame psutil flask yt-dlp pyinstaller
+          python -m pip uninstall -y TikTokLive edge-tts pygame psutil flask yt-dlp pyinstaller
+          python -m pip install --upgrade TikTokLive edge-tts pygame psutil flask yt-dlp pyinstaller
+
+      - name: Mostrar versiones instaladas
+        run: |
+          python --version
+          pip --version
+          pip show TikTokLive
+          pip show edge-tts
+          pip show pygame
+          pip show psutil
+          pip show flask
+          pip show yt-dlp
+          pip show pyinstaller
+
+      - name: Limpiar compilación anterior
+        run: |
+          if (Test-Path build) { Remove-Item build -Recurse -Force }
+          if (Test-Path dist) { Remove-Item dist -Recurse -Force }
+          if (Test-Path PatoBot.spec) { Remove-Item PatoBot.spec -Force }
 
       - name: Compilar ejecutable
         run: |
-          pyinstaller --noconsole --onefile --name PatoBot PatoBot_v1.5.py
+          pyinstaller --noconsole --onefile --clean --name PatoBot PatoBot_v1.5.py
 
       - name: Subir ejecutable
         uses: actions/upload-artifact@v4
         with:
           name: PatoBot_v1.5
           path: dist/PatoBot.exe
+          if-no-files-found: error

@@ -22,7 +22,7 @@ jobs:
 
       - name: Desinstalar versiones anteriores
         run: |
-          python -m pip uninstall -y TikTokLive edge-tts pygame psutil flask yt-dlp pyinstaller
+          python -m pip uninstall -y TikTokLive edge-tts pygame psutil flask pyinstaller
         continue-on-error: true
 
       - name: Instalar últimas versiones
@@ -32,7 +32,6 @@ jobs:
           python -m pip install --upgrade pygame
           python -m pip install --upgrade psutil
           python -m pip install --upgrade flask
-          python -m pip install --upgrade yt-dlp
           python -m pip install --upgrade pyinstaller
 
       - name: Ver versiones instaladas
@@ -64,7 +63,7 @@ jobs:
 
       - name: Compilar ejecutable
         run: |
-          python -m PyInstaller --noconsole --onefile --clean --name PatoBot PatoBot_v1.5.1M.py
+          python -m PyInstaller --noconsole --onefile --clean --name PatoBot PatoBot_v1.5.1Beta.py
 
       - name: Comprobar ejecutable
         shell: pwsh
@@ -79,6 +78,6 @@ jobs:
       - name: Subir ejecutable
         uses: actions/upload-artifact@v4
         with:
-          name: PatoBot_v1.5.1M
+          name: PatoBot_v1.5.1Beta
           path: dist/PatoBot.exe
           if-no-files-found: error

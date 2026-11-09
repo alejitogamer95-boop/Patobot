@@ -65,7 +65,7 @@ jobs:
 
       - name: Compilar ejecutable
         run: |
-          python -m PyInstaller --noconsole --onefile --clean --name PatoBot PATOBOT_V2.1.py
+          python -m PyInstaller --noconsole --onefile --clean --name PatoBot PatoBot_V2.1.py
 
       - name: Comprobar ejecutable
         shell: pwsh
